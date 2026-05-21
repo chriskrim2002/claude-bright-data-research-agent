@@ -303,6 +303,117 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* ── How it works ── */
+    .how-section {
+      max-width: 860px;
+      margin: 0 auto 52px;
+    }
+    .section-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      position: relative;
+    }
+    .step-num {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 12px;
+    }
+    .step:nth-child(1) .step-num { background: rgba(124,106,255,0.2); color: var(--accent); }
+    .step:nth-child(2) .step-num { background: rgba(6,182,212,0.2);   color: var(--accent2); }
+    .step:nth-child(3) .step-num { background: rgba(34,197,94,0.2);   color: var(--green); }
+    .step-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+    .step-desc  { font-size: 12px; color: var(--muted); line-height: 1.6; }
+    .step-tag {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 8px;
+    }
+    .step:nth-child(1) .step-tag { background: rgba(124,106,255,0.15); color: var(--accent); }
+    .step:nth-child(2) .step-tag { background: rgba(6,182,212,0.15);   color: var(--accent2); }
+    .step:nth-child(3) .step-tag { background: rgba(34,197,94,0.15);   color: var(--green); }
+    .connector {
+      position: absolute;
+      right: -9px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--border);
+      font-size: 14px;
+      z-index: 1;
+    }
+    .step:last-child .connector { display: none; }
+
+    /* ── Examples ── */
+    .examples-section {
+      max-width: 860px;
+      margin: 0 auto 52px;
+    }
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .example-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s, transform 0.1s;
+    }
+    .example-card:hover {
+      border-color: var(--accent);
+      background: rgba(124,106,255,0.06);
+      transform: translateY(-1px);
+    }
+    .example-card:active { transform: scale(0.98); }
+    .example-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .example-icon { font-size: 18px; }
+    .example-name { font-size: 14px; font-weight: 700; }
+    .example-category {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 8px;
+      background: var(--surface2);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .example-desc { font-size: 12px; color: var(--muted); line-height: 1.55; margin-bottom: 10px; }
+    .example-expects {
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+    }
+    .example-expects strong { color: var(--text); font-weight: 600; }
+
     /* ── Stats bar ── */
     #stats {
       display: none;
@@ -344,6 +455,101 @@
       <span id="btn-text">Research</span>
       <div class="spinner" id="btn-spinner"></div>
     </button>
+  </div>
+
+  <!-- How it works -->
+  <div class="how-section">
+    <div class="section-label">How it works</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Search the web</div>
+        <div class="step-desc">Claude fires multiple targeted Google searches via the Bright Data SERP API, pulling titles, URLs, and snippets for the company.</div>
+        <span class="step-tag">Bright Data SERP API</span>
+        <span class="connector">›</span>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Scrape live pages</div>
+        <div class="step-desc">Promising URLs — About pages, Crunchbase profiles, news articles — are fetched in full via the Bright Data Web Unlocker, bypassing bot protection.</div>
+        <span class="step-tag">Bright Data Web Unlocker</span>
+        <span class="connector">›</span>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Synthesise a report</div>
+        <div class="step-desc">All gathered data is fed back to Claude, which writes a structured report covering founders, funding, business model, and recent news.</div>
+        <span class="step-tag">Claude API tool use</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Examples -->
+  <div class="examples-section">
+    <div class="section-label">Try these examples</div>
+    <div class="examples-grid">
+
+      <div class="example-card" onclick="fillExample('Mistral AI')">
+        <div class="example-header">
+          <span class="example-icon">🇫🇷</span>
+          <span class="example-name">Mistral AI</span>
+          <span class="example-category">AI / LLM</span>
+        </div>
+        <div class="example-desc">Paris-based LLM startup challenging OpenAI and Google with open-weight models. Fast-growing, well-funded.</div>
+        <div class="example-expects"><strong>Expect:</strong> full funding table, open-source strategy, EU AI Act angle, key investors</div>
+      </div>
+
+      <div class="example-card" onclick="fillExample('Cursor')">
+        <div class="example-header">
+          <span class="example-icon">✏️</span>
+          <span class="example-name">Cursor</span>
+          <span class="example-category">Dev Tools</span>
+        </div>
+        <div class="example-desc">AI-first code editor built on VS Code. One of the fastest-growing developer tools of 2024–2025.</div>
+        <div class="example-expects"><strong>Expect:</strong> product overview, Anysphere team background, Series A/B details, user growth stats</div>
+      </div>
+
+      <div class="example-card" onclick="fillExample('ElevenLabs')">
+        <div class="example-header">
+          <span class="example-icon">🎙️</span>
+          <span class="example-name">ElevenLabs</span>
+          <span class="example-category">AI Audio</span>
+        </div>
+        <div class="example-desc">AI voice synthesis startup. Produces hyper-realistic speech in 29+ languages used by creators, publishers, and enterprises.</div>
+        <div class="example-expects"><strong>Expect:</strong> founders, $1.1B valuation, content partnerships, deepfake misuse controversies</div>
+      </div>
+
+      <div class="example-card" onclick="fillExample('Harvey AI')">
+        <div class="example-header">
+          <span class="example-icon">⚖️</span>
+          <span class="example-name">Harvey AI</span>
+          <span class="example-category">Legal Tech</span>
+        </div>
+        <div class="example-desc">AI legal assistant built on Claude and GPT-4. Used by Am Law 100 firms including Allen &amp; Overy and PwC Legal.</div>
+        <div class="example-expects"><strong>Expect:</strong> law firm clients, OpenAI partnership, $100M+ raise, vertical AI agent positioning</div>
+      </div>
+
+      <div class="example-card" onclick="fillExample('Udio')">
+        <div class="example-header">
+          <span class="example-icon">🎵</span>
+          <span class="example-name">Udio</span>
+          <span class="example-category">AI Music</span>
+        </div>
+        <div class="example-desc">AI music generation startup — type a prompt, get a full song. Tests how the agent handles newer, less-documented companies.</div>
+        <div class="example-expects"><strong>Expect:</strong> thinner report, fewer scraped pages, more reliance on search snippets — good edge case</div>
+      </div>
+
+      <div class="example-card" onclick="fillExample('Linear')">
+        <div class="example-header">
+          <span class="example-icon">📐</span>
+          <span class="example-name">Linear</span>
+          <span class="example-category">Ambiguous name</span>
+        </div>
+        <div class="example-desc">Project management tool for software teams. Tests how Claude disambiguates a generic name — "linear" could mean many things.</div>
+        <div class="example-expects"><strong>Expect:</strong> agent correctly identifies the SaaS tool, founders Karri Saarinen &amp; team, design-led positioning</div>
+      </div>
+
+    </div>
   </div>
 
   <div id="stats">
@@ -388,7 +594,16 @@
 
   let searches = 0, scrapes = 0, tools = 0;
 
+  const howSection      = document.querySelector('.how-section');
+  const examplesSection = document.querySelector('.examples-section');
+
   input.addEventListener('keydown', e => { if (e.key === 'Enter') startResearch(); });
+
+  function fillExample(name) {
+    input.value = name;
+    input.focus();
+    startResearch();
+  }
 
   function updateStats() {
     document.getElementById('stat-searches').textContent = searches;
@@ -426,6 +641,8 @@
     updateStats();
     setLoading(true);
 
+    howSection.style.display      = 'none';
+    examplesSection.style.display = 'none';
     addActivity('thinking', 'Starting', `Researching "${company}"...`);
 
     const evtSource = new EventSource('/research?' + new URLSearchParams({ company }));
@@ -479,6 +696,26 @@
             reportContent.innerHTML = marked.parse(event.content);
             addActivity('done', 'Complete', 'Report generated successfully');
             setLoading(false);
+            // show a "New search" button in the report panel header
+            const ph = document.querySelector('#report-panel .panel-header');
+            if (!ph.querySelector('.new-search-btn')) {
+              const nb = document.createElement('button');
+              nb.className = 'new-search-btn';
+              nb.textContent = '← New search';
+              nb.style.cssText = 'margin-left:auto;background:none;border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;';
+              nb.onmouseenter = () => { nb.style.borderColor = 'var(--accent)'; nb.style.color = 'var(--accent)'; };
+              nb.onmouseleave = () => { nb.style.borderColor = 'var(--border)'; nb.style.color = 'var(--muted)'; };
+              nb.onclick = () => {
+                workspace.className = '';
+                stats.className = '';
+                howSection.style.display = '';
+                examplesSection.style.display = '';
+                input.value = '';
+                input.focus();
+                ph.removeChild(nb);
+              };
+              ph.appendChild(nb);
+            }
           }
           else if (event.type === 'error') {
             addActivity('thinking', 'Error', event.message);
